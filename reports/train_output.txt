@@ -1,0 +1,81 @@
+=== EXPLORATION ===
+Taille : 3000 lignes x 10 colonnes
+
+Valeurs manquantes :
+duration    90
+
+Répartition de 'attaque' :
+attaque
+0    2167
+1     833
+attaque
+0    72.2
+1    27.8
+
+=== COMPARAISON DES MODÈLES (validation 25 %) ===
+
+--- Régression logistique ---
+              precision    recall  f1-score   support
+
+      normal      0.989     0.982     0.985       542
+     attaque      0.953     0.971     0.962       208
+
+    accuracy                          0.979       750
+   macro avg      0.971     0.976     0.974       750
+weighted avg      0.979     0.979     0.979       750
+
+Matrice de confusion [[TN FP] [FN TP]] : [[532 10] [6 202]]
+Faux négatifs (attaques ratées) : 6 / 208
+F1 attaque (validation) = 0.962 | F1 moyen validation croisée 5 plis = 0.952
+
+--- Arbre de décision ---
+              precision    recall  f1-score   support
+
+      normal      0.987     0.987     0.987       542
+     attaque      0.966     0.966     0.966       208
+
+    accuracy                          0.981       750
+   macro avg      0.977     0.977     0.977       750
+weighted avg      0.981     0.981     0.981       750
+
+Matrice de confusion [[TN FP] [FN TP]] : [[535 7] [7 201]]
+Faux négatifs (attaques ratées) : 7 / 208
+F1 attaque (validation) = 0.966 | F1 moyen validation croisée 5 plis = 0.939
+
+--- Forêt aléatoire ---
+              precision    recall  f1-score   support
+
+      normal      0.989     0.991     0.990       542
+     attaque      0.976     0.971     0.973       208
+
+    accuracy                          0.985       750
+   macro avg      0.982     0.981     0.982       750
+weighted avg      0.985     0.985     0.985       750
+
+Matrice de confusion [[TN FP] [FN TP]] : [[537 5] [6 202]]
+Faux négatifs (attaques ratées) : 6 / 208
+F1 attaque (validation) = 0.973 | F1 moyen validation croisée 5 plis = 0.959
+
+--- Gradient Boosting ---
+              precision    recall  f1-score   support
+
+      normal      0.987     0.993     0.990       542
+     attaque      0.980     0.966     0.973       208
+
+    accuracy                          0.985       750
+   macro avg      0.984     0.979     0.982       750
+weighted avg      0.985     0.985     0.985       750
+
+Matrice de confusion [[TN FP] [FN TP]] : [[538 4] [7 201]]
+Faux négatifs (attaques ratées) : 7 / 208
+F1 attaque (validation) = 0.973 | F1 moyen validation croisée 5 plis = 0.953
+
+=== RÉCAPITULATIF ===
+                          f1  recall  precision  cv_f1
+Régression logistique  0.962   0.971      0.953  0.952
+Arbre de décision      0.966   0.966      0.966  0.939
+Forêt aléatoire        0.973   0.971      0.976  0.959
+Gradient Boosting      0.973   0.966      0.980  0.953
+
+Modèle retenu : Forêt aléatoire
+Modèle sauvegardé dans /home/claude/projet-ml-SADY-Baba/models/model.joblib
